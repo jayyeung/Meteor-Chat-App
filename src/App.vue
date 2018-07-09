@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <p>Nah. I was just kidding. This dip is terrible!<br> I don't even
-know why I bought it.</p>
+    <ChatList/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChatList from './components/ChatList.vue'
 
 export default {
   components: {
-    HelloWorld
+    ChatList
   }
 }
 </script>
