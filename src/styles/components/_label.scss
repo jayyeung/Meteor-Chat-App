@@ -1,0 +1,6 @@
+.c-label {
+    @include ms-respond(font-size, -1);
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
