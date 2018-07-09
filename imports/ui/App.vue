@@ -23,6 +23,6 @@
 </script>
 
 <style lang='scss'>
-@import '~imports/ui/styles/main.scss';
+@import './styles/main.scss';
 </style>
 
