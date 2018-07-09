@@ -1,19 +1,10 @@
-/**
- * Allows you to change the default type name from .o-type-.
- * 
- * Type: String
- */
+$type-ms-min: -3;
+$type-ms-max: 6;
 
-$iota-objs-type-namespace: 'type-';
+@for $i from $type-ms-min through $type-ms-max {
+    // e.g. generates u-type-ms(0)
+    .#{$iota-global-utilities-namespace}type-ms\(#{$i}\) {
+        @include ms-respond(font-size, $i);
+    }
+}
 
-
-/**
- * Allows you to specify typography sizes.
- *
- * Type: Map
- */
-
-$iota-objs-type-sizes: ();
-
-
-@import 'node_modules/iotacss/objects/type';
