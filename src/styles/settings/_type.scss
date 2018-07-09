@@ -1,0 +1,18 @@
+$font-heading: 'Rajdhani';
+$font-body: 'Barlow';
+
+$type-base: 18px 20px;
+$type-line-height: 1.55; // 18 * 1.55 ~= 28px
+$type-ms: (
+    414px: (
+        base: 16px 18px
+    ),
+
+    1366px: (
+        base: $type-base,
+        ratio: 1.25
+    )
+);
+
+// Google fonts
+@import url('https://fonts.googleapis.com/css?family=Barlow:500|Rajdhani:700');

@@ -1,0 +1,16 @@
+@function color-get($palette, $tone:$palette) {
+    @return map-get(map-get($colors, $palette), $tone);
+}
+
+$colors: (
+);
+
+// Expand colors for iotacss u-color generator
+$colors-mapped: ();
+@each $color, $tones in $colors {
+    @each $tone, $value in $tones {
+        $key: $color;
+        @if ($tone != $color) { $key: $key+'-'+$tone; } 
+        $colors-mapped: map-merge($colors-mapped, ($key: $value));
+    }
+}
