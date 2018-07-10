@@ -1,0 +1,10 @@
+.c-avatar {
+	border-radius: 100%;
+	overflow: hidden;
+	width: 3rem;
+	height: 3rem;
+	& > * {
+		width: 100%;
+		vertical-align: middle;
+	}
+}

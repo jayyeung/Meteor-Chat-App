@@ -3,10 +3,26 @@
 }
 
 $colors: (
+	bg: (bg: #1D2534),
+
     target: (
         attacker: #0652DD,
         victim: #E74C3C
-    )
+    ),
+
+    grey: (
+        light: #BEBEBE,
+        grey: #939393,
+        dark: #707070
+    ),
+
+    black: (
+        black: #333,
+		dark: #242424,
+		darker: #000000
+	),
+
+	white: ( white: white )
 );
 
 // Expand colors for iotacss u-color generator
@@ -14,7 +30,7 @@ $colors-mapped: ();
 @each $color, $tones in $colors {
     @each $tone, $value in $tones {
         $key: $color;
-        @if ($tone != $color) { $key: $key+'-'+$tone; } 
+        @if ($tone != $color) { $key: $key+'-'+$tone; }
         $colors-mapped: map-merge($colors-mapped, ($key: $value));
     }
 }

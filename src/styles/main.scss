@@ -18,6 +18,10 @@
 @import 'objects/type';
 
 @import 'components/label';
+@import 'components/avatar';
+@import 'components/searchbar';
+@import 'components/sidebar';
+@import 'components/chatlist';
 
 @import 'utilities/align-items';
 @import 'utilities/align';
@@ -32,9 +36,9 @@
 @import 'utilities/opacity';
 @import 'utilities/padding';
 @import 'utilities/position';
-@import 'utilities/pull';
-@import 'utilities/push';
-@import 'utilities/size';
+// @import 'utilities/pull';
+// @import 'utilities/push';
+// @import 'utilities/size';
 @import 'utilities/text';
 @import 'utilities/transform';
 @import 'utilities/weight';
