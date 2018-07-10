@@ -1,7 +1,5 @@
 <template>
-  <div class="hello">
-    <Label class='u-opacity-40'>Disguised As</Label>
-    <div class='u-type-ms(1)'>Noah Newson</div>
+  <div class="c-chatlist">
   </div>
 </template>
 
