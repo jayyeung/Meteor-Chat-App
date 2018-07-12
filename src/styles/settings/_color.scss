@@ -3,10 +3,17 @@
 }
 
 $colors: (
-	bg: (bg: #1D2534),
+	bg: (
+		light: #F6F6F6,
+		bg: #1D2534
+	),
 
-    target: (
-        attacker: #0652DD,
+	attacker: (
+		light: #7BAAFF,
+		attacker: #0652DD,
+	),
+
+    victim: (
         victim: #E74C3C
     ),
 

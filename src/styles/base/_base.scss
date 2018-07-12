@@ -1,7 +1,14 @@
+*, *::after, *::before {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
 // technically not base elem,
 // but put just for conveience
 #app {
 	@extend .o-container;
+
 	width: 100%;
 	height: 100%;
 
@@ -22,3 +29,20 @@ body {
 	background: color-get(bg);
 }
 
+input, button { outline: none; }
+
+input {
+	@extend :root;
+	border: none;
+	box-sizing: border-box;
+}
+
+button {
+	@extend .c-label;
+	padding: sp(-16) sp(-24);
+
+	cursor: pointer;
+	color: white;
+	background: color-get(victim);
+	border: 1px solid darken(color-get(victim), 15);
+}

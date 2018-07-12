@@ -4,7 +4,23 @@
 	min-width: 300px;
 
 	background: color-get(black);
+	box-shadow: sp(-8) 0 16px rgba(black, 0.15);
 	& > * { width: 100%; }
+
+	position: relative;
+	&::after {
+		content: '';
+		height: 10rem;
+		position: absolute;
+		left: 0; right: 0;
+		bottom: 0;
+
+		background: linear-gradient(to bottom,
+					transparent 0%,
+					color-get(black) 90%);
+
+		pointer-events: none;
+	}
 }
 
 .c-sidebar__list-status {
@@ -34,11 +50,19 @@
 .c-sidebar__list {
 	@extend .o-media__fluid;
 	list-style: none;
+	overflow-y: scroll;
 }
 
 .c-sidebar__list-item {
 	@extend .o-media, .o-media--middle;
-	padding: sp(-24) sp(-16);
+	padding: sp(-16) sp(-24);
+
 	color: white;
+	cursor: pointer;
+
+	transition: all 0.3s;
+	&:hover {
+		background: darken(color-get(black, dark), 5);
+	}
 }
 

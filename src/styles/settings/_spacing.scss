@@ -1,8 +1,8 @@
 // (baseline) / (font-size) = convert to rem
-$baseline: 0.2rem; 
+$baseline: 0.2rem;
 
 $spacing: (
-    -auto : auto, 
+    -auto : auto,
     -none : 0,
     -4 : $baseline,
     -8 : $baseline*2,
@@ -13,7 +13,6 @@ $spacing: (
     -28: $baseline*7,
     -32: $baseline*8,
     -40: $baseline*10,
-    -52: $baseline*13,
     -60: $baseline*15
 );
 
@@ -21,4 +20,4 @@ $spacing: (
     @if map-has-key($spacing, $step) {
         @return map-get($spacing, $step);
     }
-} 
+}
