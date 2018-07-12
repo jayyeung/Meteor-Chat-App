@@ -8,31 +8,54 @@
 				class='c-sidebar__list-item'>
 
 				<Avatar class='u-mr-20' src='http://placehold.it/52x52'/>
-				<span>{{ contact.username }}</span>
+				<div>
+					<span>{{ contact.username }}</span>
+
+					<Label v-show='contact.username === getUser'
+					small class='u-color-attacker-light'>You</Label>
+				</div>
 			</li>
+
+			<li class='u-pv-32'></li>
 		</ul>
 	</div>
 </template>
 
 <script>
+	import Label from './objects/Label.vue';
 	import Searchbar from './objects/Searchbar.vue';
 	import Avatar from './objects/Avatar.vue';
+
+	import { mapGetters } from 'vuex';
 
 	export default {
 		components: {
 			Searchbar,
-			Avatar
+			Avatar,
+			Label
 		},
 		data: function() {
 			return {
 				searchFilter: '',
 				contacts: [
 					{ username: 'Dave Lowder' },
-					{ username: 'Noah Newson' }
+					{ username: 'Noah Newson' },
+					{ username: 'Nerissa Oh' },
+					{ username: 'Cole Fry' },
+					{ username: 'Kenneth Dillan' },
+					{ username: 'Erick Lowery' },
+					{ username: 'Tobias Tanner' },
+					{ username: 'Terrance Atkinson' },
+					{ username: 'Dave Lowder' },
+					{ username: 'Noah Newson' },
+					{ username: 'Nerissa Oh' },
+					{ username: 'Cole Fry' },
 				]
 			}
 		},
 		computed: {
+			...mapGetters(['getUser']),
+
 			filterContacts: function() {
 				const filter = (this.searchFilter).trim().toLowerCase();
 				if (filter === '') return (this.contacts);

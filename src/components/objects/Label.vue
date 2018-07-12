@@ -1,11 +1,14 @@
 <template>
-    <div class='c-label'>
+    <div class='c-label' :class='{ "c-label--small" : small }'>
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Label'
+        name: 'Label',
+		props: {
+			small: Boolean
+		}
     };
 </script>
