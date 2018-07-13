@@ -12,7 +12,7 @@
 @import 'base/type';
 
 @import 'objects/container';
-@import 'objects/grid';
+// @import 'objects/grid';
 @import 'objects/list';
 @import 'objects/media';
 @import 'objects/type';
@@ -23,6 +23,8 @@
 @import 'components/searchbar';
 @import 'components/sidebar';
 @import 'components/chatlist';
+
+@import 'state/transitions';
 
 @import 'utilities/align-items';
 @import 'utilities/align';
