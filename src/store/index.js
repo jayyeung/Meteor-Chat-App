@@ -5,28 +5,48 @@ Vue.use(Vuex);
 
 const Store = new Vuex.Store({
 	state: {
-		user: {}, // Meteor.user()
-		victim: {},
+		user: {
+			_id: 123,
+			username: 'Dave Lowder',
+			profile_pic: 'https://randomuser.me/api/portraits/men/23.jpg'
+		}, // Meteor.user()
+		target: {
+			_id: 1235,
+			username: 'Cole Fry',
+			profile_pic: 'https://randomuser.me/api/portraits/men/24.jpg'
+		},
 
 		contacts: {},
-		chatMessages: {}
+		chatMessages: [
+			{
+				value: 'This is my message!',
+				from: {
+					username: 'Cole Fry',
+					profile_pic: 'https://randomuser.me/api/portraits/men/24.jpg'
+				}
+			}
+		]
 	},
 
 	getters: {
 		getUser: (state) => (state.user),
-		getVictim: (state) => (state.victim)
+		getTarget: (state) => (state.target),
+
+		getMessages: (state) => (state.chatMessages),
 	},
 
 	mutations: {
-		setVictim: (state, payload) => {
-			// Meteor.call('contacts.get', payload);
-			state.victim = payload;
+		setTarget: (state, payload) => {
+			state.target = payload;
 		}
 	},
 
 	actions: {
-		changeVictim: ({ commit }, payload) => {
-			commit('setVictim', payload);
+		changeTarget: ({ commit }, payload) => {
+			// const target = Meteor.call('contacts.get', payload);
+			if (!payload) // if (!target)
+				return commit('setTarget', null);
+			commit('setTarget', payload);
 		},
 
 		sendMessage: ({ commit }, payload) => {
