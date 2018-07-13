@@ -1,5 +1,7 @@
 *, *::after, *::before {
 	box-sizing: border-box;
+
+	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -45,4 +47,7 @@ button {
 	color: white;
 	background: color-get(victim);
 	border: 1px solid darken(color-get(victim), 15);
+
+	transition: opacity 0.3s;
+	&:hover { opacity: 0.9; }
 }

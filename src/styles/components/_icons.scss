@@ -1,33 +1,27 @@
-@import url('https://i.icomoon.io/public/temp/4915ae620c/UntitledProject/style.css');
-
-// TODO
-// Fix the fricken icons
-
 $icon-path: "~/src/assets/icons" !default;
 
 // icon symbols
-$c-icon-send: "\e900";
-$c-icon-link: "\e901";
-$c-icon-anon-disabled: "\e902";
-$c-icon-anon: "\e903";
-$c-icon-search: "\e904";
+$c-icon-link: "\0041";
+$c-icon-search: "\0042";
+$c-icon-send: "\0043";
+$c-icon-anon: "\0044";
+$c-icon-anon-disabled: "\0045";
 
 
 // All icons designed by me :) Jason Yeung
 @font-face {
 	font-family: 'anonicons';
-	src:  url('#{$icon-path}/anonicons.eot?yg5dsg');
-	src:  url('#{$icon-path}/anonicons.eot?yg5dsg#iefix') format('embedded-opentype'),
-	  url('#{$icon-path}/anonicons.ttf?yg5dsg') format('truetype'),
-	  url('#{$icon-path}/anonicons.woff?yg5dsg') format('woff'),
-	  url('#{$icon-path}/anonicons.svg?yg5dsg#anonicons') format('svg');
+	src:  url('#{$icon-path}/anonicons.eot');
+	src:  url('#{$icon-path}/anonicons.eot#iefix') format('embedded-opentype'),
+	  url('#{$icon-path}/anonicons.ttf') format('truetype'),
+	  url('#{$icon-path}/anonicons.woff') format('woff'),
+	  url('#{$icon-path}/anonicons.svg#anonicons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-.c-icon {
+i, .c-icon {
 	font-family: 'anonicons' !important;
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;

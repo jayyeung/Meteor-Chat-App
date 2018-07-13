@@ -66,6 +66,7 @@ $iota-global-rtl: false;
  */
 
 $iota-global-breakpoints: (
+  xs  : "screen and ( min-width: 540px )",
   sm  : "screen and ( min-width: 1024px )",
   md  : "screen and ( min-width: 1366px )"
 );

@@ -36,7 +36,7 @@
 	&::before {
 		content: '';
 		display: inline-block;
-		width: 1rem; height: 1rem;
+		width: 1.25rem; height: 1.25rem;
 		margin-right: sp(-12);
 
 		background: #2ECC71;
@@ -63,6 +63,18 @@
 	transition: all 0.3s;
 	&:hover {
 		background: darken(color-get(black, dark), 5);
+	}
+
+	&--empty {
+		position: absolute;
+		left: 0; right: 0;
+		top: 0; bottom: 0;
+
+		flex-flow: column nowrap;
+		justify-content: center;
+		color: color-get(grey, dark);
+		cursor: default;
+		&:hover { background: none; }
 	}
 }
 
