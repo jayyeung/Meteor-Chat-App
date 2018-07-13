@@ -41,6 +41,10 @@ export default {
 	margin: 1rem auto;
 	text-align: center;
 	color: #6D7687;
+
+	@media screen and (max-width: 1024px) {
+		display: none;
+	}
 }
 </style>
 

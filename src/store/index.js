@@ -31,6 +31,7 @@ const Store = new Vuex.Store({
 	getters: {
 		getUser: (state) => (state.user),
 		getTarget: (state) => (state.target),
+		targetIsUser: (state) => (state.user._id === state.target._id),
 
 		getMessages: (state) => (state.chatMessages),
 	},
