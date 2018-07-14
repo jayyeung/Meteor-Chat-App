@@ -1,9 +1,7 @@
-import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
-import { Profile } from 'meteor/socialize:user-profile';
-import SimplSchema from 'simpl-schema';
+import { Profile, ProfilesCollection as Profiles } from 'meteor/socialize:user-profile';
 
-Profile.attachSchema({
+const profileSchema = {
 	'username': {
 		type: String,
 		autoValue() {
@@ -11,6 +9,7 @@ Profile.attachSchema({
 			return generateName();
 		}
 	},
+
 	'avatar': {
 		type: String,
 		autoValue() {
@@ -18,4 +17,6 @@ Profile.attachSchema({
 			return `https://api.adorable.io/avatars/60/${rand}`;
 		}
 	},
-});
+}
+
+Profile.attachSchema(profileSchema);

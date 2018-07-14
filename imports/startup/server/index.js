@@ -1,9 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 
-import './temp-login';
 import './user-profile';
+import './temp-login';
+
+import { Messages } from '/imports/api/messages';
 
 Meteor.startup(() => {
-	// remove all temp users on new server
+	Messages.remove({});
 	Meteor.users.remove({});
 });

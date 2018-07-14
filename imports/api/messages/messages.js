@@ -1,21 +1,36 @@
-import { Meteor } from 'meteor/meteor';
+import { Meteor, isServer } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+
+import { ProfilesCollection as Profiles } from 'meteor/socialize:user-profile';
 import SimplSchema from 'simpl-schema';
 
 export const Messages = new Mongo.Collection('messages');
 
-Meteor.publish('messages.all', () => {
-	return Messages.find({});
-});
+if (isServer) {
+	Meteor.publish('messages.all', () => {
+		return Messages.find({});
+	});
+}
 
 Meteor.methods({
-	'messages.send': (message, victim = Meteor.userId()) => {
+	'messages.send': (message, target) => {
 		const formatted = message.trim();
-		const query = { _id: victim };
-		const contact_info = Meteor.users.findOne(query).profile();
+		let contact = {};
 
-		if (!contact_info)
-			return new Meteor.Error('Cannot find sender profile.');
+		if (!target) {
+			contact = Meteor.user().profile();
+		} else {
+			const query = { username: target };
+			contact = Profiles.findOne(query);
+		}
+
+		if (!formatted) return new Meteor.Error('Empty message');
+		if (!contact) return new Meteor.Error('No such sender profile.');
+
+		const contact_info = {
+			username: contact.username,
+			avatar: contact.avatar
+		};
 
 		Messages.insert({
 			message: formatted,
