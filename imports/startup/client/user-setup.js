@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Random } from 'meteor/random';
 import { Tracker } from 'meteor/tracker';
 
 Meteor.loginTemp = (username, callback) => {
@@ -17,7 +16,7 @@ const saveTemp = () => {
 }
 
 Meteor.startup(() => {
-	Tracker.autorun(()=>{
+	Tracker.autorun(() => {
 		let tempUser = localStorage.getItem('tempUser') || null;
 		const user = Meteor.user();
 		if (!user) Meteor.loginTemp(tempUser, saveTemp);

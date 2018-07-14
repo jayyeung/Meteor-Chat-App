@@ -4,8 +4,8 @@ import SimplSchema from 'simpl-schema';
 
 export const Messages = new Mongo.Collection('messages');
 
-const messageSchema = new SimplSchema({
-
+Meteor.publish('messages.all', () => {
+	return Messages.find({});
 });
 
 Meteor.methods({

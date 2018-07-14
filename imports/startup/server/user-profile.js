@@ -1,18 +1,21 @@
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 import { Profile } from 'meteor/socialize:user-profile';
 import SimplSchema from 'simpl-schema';
 
 Profile.attachSchema({
-	'contact_name': {
+	'username': {
 		type: String,
 		autoValue() {
-			return 'bobby';
+			const generateName = require('sillyname');
+			return generateName();
 		}
 	},
 	'avatar': {
 		type: String,
 		autoValue() {
-			return 'test';
+			const rand = Random.hexString(5);
+			return `https://api.adorable.io/avatars/60/${rand}`;
 		}
 	},
 });

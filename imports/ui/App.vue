@@ -1,15 +1,7 @@
 <template>
-	<body>
-		<div id='app'>
-			<div class='c-sidebar'>
+	<div id='app'>
 
-			</div>
-
-			<div class='c-chatlist'>
-
-			</div>
-		</div>
-	</body>
+	</div>
 </template>
 
 <script>
@@ -21,8 +13,4 @@
 		}
 	};
 </script>
-
-<style lang='scss'>
-@import './styles/main.scss';
-</style>
 

@@ -3,11 +3,11 @@ import { Random } from 'meteor/random';
 import { UserPresence as TempStatus } from 'meteor/socialize:user-presence';
 import SimplSchema from 'simpl-schema';
 
-Accounts.registerLoginHandler(function(loginRequest) {
+Accounts.registerLoginHandler((loginRequest) => {
 	if (!loginRequest.temp) return;
 	const username = loginRequest.username || `temp-${Random.hexString(5)}`;
 
-	console.log('username: ' + username);
+	// console.log('username: ' + username);
 	const query = {username};
 	const user = Meteor.users.findOne(query);
 	let userId = null;
@@ -19,18 +19,18 @@ Accounts.registerLoginHandler(function(loginRequest) {
 
 let tempRemoval = {};
 TempStatus.onUserOffline((userId) => {
-	console.log('userId ' + userId + ' set for removal');
+	// if offline set timer for user to be removed
 	if (!tempRemoval[userId])
 		tempRemoval[userId] = Meteor.setTimeout(() => {
+			// remove user after timer
 			Accounts.users.remove({_id: userId});
-			console.log('userId ' + userId + ' removed succuessfully');
 		}, 60000);
 });
 
 TempStatus.onUserOnline((userId) => {
 	let pendingRemoval = tempRemoval[userId];
+	// if user back online before removal, clear the removal
 	if (pendingRemoval) {
-		console.log('userId ' + userId + ' cleared from removal');
 		clearTimeout(pendingRemoval);
 	}
 });
