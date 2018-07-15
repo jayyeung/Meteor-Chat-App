@@ -2,8 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 
 import { UserPresence as TempStatus } from 'meteor/socialize:user-presence';
-import { ProfilesCollection } from 'meteor/socialize:user-profile';
-import SimplSchema from 'simpl-schema';
+import { ProfilesCollection as Profiles } from 'meteor/socialize:user-profile';
 
 Accounts.registerLoginHandler((loginRequest) => {
 	if (!loginRequest.temp) return;
@@ -14,20 +13,29 @@ Accounts.registerLoginHandler((loginRequest) => {
 	const user = Meteor.users.findOne(query);
 	let userId = null;
 
-	if (!user) userId = Accounts.insertUserDoc({}, {...query, status:'offline'});
-	else userId = user._id;
+	// create new user if no past user found,
+	// else use old user
+	if (!user) {
+		userId = Accounts.insertUserDoc({}, query);
+		Meteor.call('messages.notify',
+		'has joined the chat.', userId);
+	} else { userId = user._id; }
 	return { userId };
 });
+
 
 let tempRemoval = {};
 TempStatus.onUserOffline((userId) => {
 	// if offline set timer for user to be removed
 	if (!tempRemoval[userId])
 		tempRemoval[userId] = Meteor.setTimeout(() => {
+			Meteor.call('messages.notify',
+			'has left the chat.', userId);
+
 			// remove user after timer
-			Meteor.users.remove(userId);
-			ProfilesCollection.remove(userId);
-		}, 5000);
+			Accounts.users.remove(userId);
+			Profiles.remove(userId);
+		}, 3000);
 });
 
 TempStatus.onUserOnline((userId) => {
@@ -35,5 +43,7 @@ TempStatus.onUserOnline((userId) => {
 	// if user back online before removal, clear the removal
 	if (pendingRemoval) {
 		clearTimeout(pendingRemoval);
+		tempRemoval[userId] = null;
+		return;
 	}
 });
