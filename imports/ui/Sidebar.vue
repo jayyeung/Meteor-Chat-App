@@ -6,20 +6,20 @@
 
 		<ul class='c-sidebar__list'>
 			<transition-group name='slide'>
-				<li v-for='(contact, i) in filterContacts'
-					class='c-sidebar__list-item'
+				<li v-for='(user, i) in filterUsers'
+					class='c-sidebar__list-item' @click='setTarget(user.username)'
 					:key='`contact-${i}`'>
 
-					<Avatar class='u-mr-20' src='http://placehold.it/52x52'/>
+					<Avatar class='u-mr-20' :src='user.avatar'/>
 					<div>
-						<span>{{ contact.username }}</span>
+						<span>{{ user.username }}</span>
 
 						<transition-group name='slide' tag='div' class='u-mv-8'>
-							<Label v-if='true'
+							<Label v-if='currentUser.username === user.username'
 							small class='u-color-attacker-light' style='line-height:0;'
 							key='label-1'>You</Label>
 
-							<Label v-else-if='true'
+							<Label v-else-if='userTarget && userTarget.username === user.username'
 							small class='u-color-victim' style='line-height:0;'
 							key='label-2'>Target</Label>
 
@@ -31,7 +31,7 @@
 				</li>
 			</transition-group>
 
-			<li v-show='!filterContacts.length'
+			<li v-show='!filterUsers.length'
 			class='c-sidebar__list-item c-sidebar__list-item--empty'>
 				<img class='u-mb-20' src='../assets/user-anon.svg' width='160'/>
 				No Users Found
@@ -47,6 +47,8 @@
 	import Searchbar from './objects/Searchbar.vue';
 	import Avatar from './objects/Avatar.vue';
 
+	import MeteorData from './store/data';
+
 	export default {
 		components: {
 			Searchbar,
@@ -55,44 +57,35 @@
 		},
 		data: function() {
 			return {
-				searchFilter: '',
-				contacts: [
-					{ username: 'Dave Lowder', _id: 123 },
-					{ username: 'Noah Newson', _id:12412, profile_pic:'https://d3iw72m71ie81c.cloudfront.net/female-51.jpg' },
-					{ username: 'Nerissa Oh' },
-					{ username: 'Cole Fry' },
-					{ username: 'Kenneth Dillan' },
-					{ username: 'Erick Lowery' },
-					{ username: 'Tobias Tanner' },
-					{ username: 'Terrance Atkinson' },
-					{ username: 'Dave Lowder' },
-					{ username: 'Noah Newson' },
-					{ username: 'Nerissa Oh' },
-					{ username: 'Cole Fry' },
-				]
+				searchFilter: ''
+			}
+		},
+		methods: {
+			setTarget: function(username) {
+				this.$store.dispatch("setTarget", username);
 			}
 		},
 		computed: {
-
-			filterContacts: function() {
+			filterUsers: function() {
 				const filter = (this.searchFilter).trim().toLowerCase();
-				if (filter === '') return (this.contacts);
-				const contacts = (this.contacts).filter((obj, i) => {
+				if (filter === '') return (this.users);
+				const users = (this.users).filter((obj, i) => {
 					const username = obj.username.toLowerCase();
 					return (username.indexOf(filter) !== -1);
 				});
-				return contacts;
+				return users;
 			},
 
 			listStatus: function() {
 				let status = 'found';
-				const contactsNum = (this.filterContacts).length;
-				if (contactsNum === (this.contacts).length)
+				const contactsNum = (this.filterUsers).length;
+				if (contactsNum === (this.users).length)
 					status = 'online';
 
 				return `${contactsNum} user${(contactsNum !== 1) ? 's' : ''} ${status}`;
 			}
-		}
+		},
+		...MeteorData
 	};
 </script>
 
