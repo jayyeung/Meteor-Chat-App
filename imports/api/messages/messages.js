@@ -1,4 +1,4 @@
-import { Meteor, isServer } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 import { ProfilesCollection as Profiles } from 'meteor/socialize:user-profile';
@@ -6,37 +6,46 @@ import SimplSchema from 'simpl-schema';
 
 export const Messages = new Mongo.Collection('messages');
 
-if (isServer) {
+if (Meteor.isServer) {
 	Meteor.publish('messages.all', () => {
-		return Messages.find({});
+		return Messages.find({}, {
+			limit: 50,
+			sort: { created_at: 1 }
+		});
 	});
 }
 
 Meteor.methods({
 	'messages.send': (message, target) => {
 		const formatted = message.trim();
-		let contact = {};
+		const query = { username: target };
 
-		if (!target) {
-			contact = Meteor.user().profile();
-		} else {
-			const query = { username: target };
-			contact = Profiles.findOne(query);
-		}
+		const currentUser = Meteor.user().profile();
+		let targetUser = (!target) ? currentUser : Profiles.findOne(query);
 
 		if (!formatted) return new Meteor.Error('Empty message');
-		if (!contact) return new Meteor.Error('No such sender profile.');
+		if (!targetUser) return new Meteor.Error('No such sender profile.');
 
-		const contact_info = {
-			username: contact.username,
-			avatar: contact.avatar
+		const targetInfo = {
+			username: targetUser.username,
+			avatar: targetUser.avatar
 		};
 
 		Messages.insert({
+			type: 'Message',
 			message: formatted,
 			created_at: new Date(),
 			created_by: Meteor.userId(),
-			contact: contact_info
+			target: targetInfo
+		});
+	},
+
+	'messages.notify': (note, userId) => {
+		const user = Profiles.findOne({_id: userId}) || '';
+		Messages.insert({
+			type: 'Notification',
+			created_at: new Date(),
+			note: `${user.username || ''} ${note}`
 		});
 	}
 });
