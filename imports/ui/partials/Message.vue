@@ -6,8 +6,8 @@
 
 		<div class='o-media__fluid'>
 			<div class='o-type-ms(1) u-mb-8'>
-				{{ from }}
-				<Label class='u-inline-block u-opacity-40 u-ml-20'>7:58pm</Label>
+				<span class='u-mr-20'>{{ from }}</span>
+				<Label v-if='date' class='u-inline-block u-opacity-40'>{{ getMessageTime }}</Label>
 			</div>
 			<p class='text'><slot></slot></p>
 		</div>
@@ -26,12 +26,25 @@ export default {
 	props: {
 		avatar: String,
 		from: { type: String, required: true },
-		date: String,
+		date: Date
+	},
+	computed: {
+		getMessageTime() {
+			const options = {
+				hour: 'numeric',
+				minute: 'numeric',
+				hour12: true
+			};
+			return (this.date).toLocaleString('en-US', options);
+		}
 	}
 };
 </script>
 
 <style lang="scss">
-.text { max-width: 600px; }
+.text {
+	max-width: 600px;
+	word-wrap: break-word;
+}
 </style>
 

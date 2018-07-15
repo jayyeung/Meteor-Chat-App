@@ -25,13 +25,13 @@ export default {
 .wrapper {
 	display: flex;
 	flex-wrap: wrap-reverse;
-
-	height: 100%;
 	box-shadow: 0 0.4rem 12px rgba(black, 0.2);
+
+	&, & > * { height: 100%; }
 }
 
 .c-sidebar { flex: 1 2; }
-.c-chatlist { flex: 1 700px; }
+.c-chatlist { flex: 1 600px; }
 
 .credits {
 	margin: 1rem auto;

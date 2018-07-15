@@ -1,6 +1,7 @@
 <template>
-	<div class='c-avatar' ref='avatar' :class='{ "c-avatar--tagged" : tagged }'
-		:style='{ width : width, height : width }'>
+	<div class='c-avatar' :class='{ "c-avatar--tagged" : tagged }'
+		:style='{ width : width, height : width,
+		"border-color" : (tagged && tagColor) }'>
 
 		<img :src='src' alt='user avatar'/>
 
@@ -14,8 +15,9 @@
 		name: 'Avatar',
 		props: {
 			width: String,
-			tagged: Boolean,
 			src: { type: String, required: true },
+			tagged: Boolean,
+			tagColor: String,
 		},
 		watch: {
 			src: function(src, oldSrc) {
@@ -26,11 +28,6 @@
 				transition.style.animation = 'none';
 				transition.offsetHeight;
 				transition.style.animation = null;
-
-				let avatar = this.$refs['avatar'];
-				avatar.style.animation = 'none';
-				avatar.offsetHeight;
-				avatar.style.animation = null;
 			}
 		}
 	}
