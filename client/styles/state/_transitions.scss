@@ -17,6 +17,13 @@
 .scale-enter-active, .scale-leave-active {
 	transition: all 0.5s;
 }
-.scale-enter { opacity: 0; transform: scale(1.05); }
-.scale-enter-to { opacity: 1; transform: scale(1); }
-.scale-leave-to { opacity: 0 !important; transform: scale(0.95); }
+.scale-enter { transform: scale(1.1); }
+.scale-enter-to, .scale-leave { opacity: 1; transform: scale(1); }
+.scale-leave-to { opacity: 0 !important; transform: scale(0.9); }
+
+// REFLECT
+.reflect-enter-active, .reflect-leave-active {
+	transition: transform 0.3s;
+}
+
+.reflect-enter, .reflect-leave-to { transform: scaleX(0); }

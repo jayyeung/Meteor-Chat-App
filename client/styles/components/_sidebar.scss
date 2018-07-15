@@ -21,6 +21,11 @@
 
 		pointer-events: none;
 	}
+
+	display: none;
+	@include iota-breakpoint(sm) {
+		display: flex;
+	}
 }
 
 .c-sidebar__list-status {
