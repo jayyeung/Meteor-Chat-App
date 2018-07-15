@@ -1,0 +1,31 @@
+.c-searchbar {}
+
+.c-searchbar__wrapper {
+	@extend .o-media, .o-media--middle;
+	padding: sp(-12) sp(-24);
+
+	background: #242424;
+	border-radius: 100px;
+	cursor: text;
+
+	&::before {
+		@extend .c-icon;
+		content: $c-icon-search;
+		margin-right: sp(-16);
+	}
+
+	&::before, input {
+		color: color-get(grey, light);
+	}
+}
+
+.c-searchbar input {
+	@extend .o-media__fluid;
+	@extend :root;
+	background: none;
+	color: color-get(white);
+
+	&::placeholder {
+		color: color-get(grey);
+	}
+}

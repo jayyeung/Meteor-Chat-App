@@ -1,0 +1,23 @@
+.c-avatar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 3rem;
+	height: 3rem;
+
+	position: relative;
+	background: color-get(grey, light);
+	border-radius: 100%;
+	overflow: hidden;
+	& > * { width: 100%; }
+}
+
+.c-avatar--tagged {
+	@keyframes focus {
+		from { border-color: transparent; }
+	}
+
+	animation: focus 0.5s;
+	animation-fill-mode: forwards;
+	border: $baseline solid color-get(victim);
+}

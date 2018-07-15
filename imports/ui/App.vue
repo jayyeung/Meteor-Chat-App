@@ -1,36 +1,45 @@
 <template>
-	<div id='app'>
-		<div v-for='(user, i) in users' :key='i'>{{ user }}</div>
+  <div id="app">
+	  <div class='wrapper'>
+		<Sidebar/>
+		<ChatList/>
+	  </div>
 
-		<div>MESSAGES</div>
-		<div v-for='(message, i) in messages' :key='`message-${i}`'>{{ message }}</div>
-		<button @click='click'></button>
-
-		<input v-model='username'/>
-
-		<input placeholder='Enter message' v-model='message'>
-	</div>
+	  <div class='credits'>Chatroom app designed & developed by Jason Yeung</div>
+  </div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				username: '',
-				message: ''
-			};
-		},
+import Sidebar from './Sidebar.vue';
+import ChatList from './ChatList.vue';
 
-		methods: {
-			click() {
-				const payload = {
-					message: this.message,
-					target: this.username
-				};
-
-				this.$store.dispatch('sendMessage', payload);
-			}
-		}
-	};
+export default {
+	components: {
+		Sidebar,
+		ChatList
+	}
+}
 </script>
 
+<style lang='scss' scoped>
+.wrapper {
+	display: flex;
+	flex-wrap: wrap-reverse;
+
+	height: 100%;
+	box-shadow: 0 0.4rem 12px rgba(black, 0.2);
+}
+
+.c-sidebar { flex: 1 2; }
+.c-chatlist { flex: 1 700px; }
+
+.credits {
+	margin: 1rem auto;
+	text-align: center;
+	color: #6D7687;
+
+	@media screen and (max-width: 1024px) {
+		display: none;
+	}
+}
+</style>

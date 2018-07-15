@@ -1,0 +1,41 @@
+.c-chatlist {
+	@extend .o-media;
+	flex-direction: column;
+
+	& > * { width: 100%; }
+
+	background: color-get(white);
+}
+
+.c-chatlist__info {
+	@extend .o-media, .o-media--middle;
+	padding: sp(-16) sp(-40);
+
+	background: color-get(bg, light);
+	border-bottom: 1px solid darken(color-get(bg, light), 10);
+}
+
+.c-chatlist__list {
+	flex: 1;
+	overflow-y: scroll;
+}
+
+.c-chatlist__message {
+	@extend .o-media;
+	padding: sp(-28) sp(-40);
+}
+
+.c-chatlist__chatbar {
+	@extend .o-media, .o-media--middle;
+	box-shadow: 0 -#{$baseline} 16px rgba(black, 0.1);
+
+	input[type='text'] {
+		@include ms-respond(font-size, 0);
+		padding: sp(-24) sp(-32);
+		flex: 1;
+
+		&::placeholder {
+			color: color-get(grey);
+		}
+	}
+}

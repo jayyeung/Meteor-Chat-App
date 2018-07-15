@@ -1,0 +1,10 @@
+$type-ms-min: -3;
+$type-ms-max: 6;
+
+@for $i from $type-ms-min through $type-ms-max {
+    // e.g. generates u-type-ms(0)
+    .#{$iota-global-objects-namespace}type-ms\(#{$i}\) {
+        @include ms-respond(font-size, $i);
+    }
+}
+

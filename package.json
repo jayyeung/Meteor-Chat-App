@@ -15,7 +15,9 @@
     "vue": "^2.5.16",
     "vue-meteor-tracker": "^2.0.0-beta.3",
     "vue-supply": "^0.3.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "iotacss": "^1.6.0",
+    "modularscale-sass": "^3.0.5"
   },
   "meteor": {
     "mainModule": {
@@ -25,6 +27,5 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "iotacss": "^1.6.0"
   }
 }

@@ -1,0 +1,53 @@
+*, *::after, *::before {
+	box-sizing: border-box;
+
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+// technically not base elem,
+// but put just for conveience
+#app {
+	@extend .o-container;
+
+	width: 100%;
+	height: 100%;
+
+	@include iota-breakpoint(sm) {
+		padding: 1rem;
+	}
+	@include iota-breakpoint(md) { max-height: 90vh; }
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	height: 100vh;
+
+	background: color-get(bg);
+}
+
+input, button { outline: none; }
+
+input {
+	@extend :root;
+	border: none;
+	box-sizing: border-box;
+}
+
+button {
+	@extend .c-label;
+	padding: sp(-16) sp(-24);
+
+	cursor: pointer;
+	color: white;
+	background: color-get(victim);
+	border: 1px solid darken(color-get(victim), 15);
+
+	transition: opacity 0.3s;
+	&:hover { opacity: 0.9; }
+}

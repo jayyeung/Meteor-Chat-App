@@ -1,0 +1,10 @@
+:root {
+    @include ms-respond(font-size, 0);
+    font-family: $font-body;
+    line-height: $type-line-height;
+    color: color-get(black);
+}
+
+p {
+	color: color-get(grey);
+}
