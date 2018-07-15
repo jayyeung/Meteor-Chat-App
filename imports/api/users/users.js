@@ -1,8 +1,8 @@
-import { Meteor, isServer } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import { ProfilesCollection as Profiles } from 'meteor/socialize:user-profile';
 
-if (isServer) {
+if (Meteor.isServer) {
 	Meteor.publish('users.all', () => {
-		return Profiles.find();
+		return Profiles.find({});
 	});
 }
