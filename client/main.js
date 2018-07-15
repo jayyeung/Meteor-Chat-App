@@ -16,7 +16,6 @@ Meteor.startup(() => {
 	new Vue({
 		el: '#app',
 		...App,
-		...meteorData,
 		store,
 	});
 });
