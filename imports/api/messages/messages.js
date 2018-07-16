@@ -23,8 +23,11 @@ Meteor.methods({
 		const currentUser = Meteor.user().profile();
 		let targetUser = (!target) ? currentUser : Profiles.findOne(query);
 
-		if (!formatted) return new Meteor.Error('Empty message');
-		if (!targetUser) return new Meteor.Error('No such sender profile.');
+		if (!formatted) return;
+		// throw new Meteor.Error('message-error', 'Empty message');
+
+		if (!targetUser) return;
+		// throw new Meteor.Error('sender-error', 'No such sender profile.');
 
 		const targetInfo = {
 			username: targetUser.username,

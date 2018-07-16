@@ -11,7 +11,9 @@ const store = new Vuex.Store({
 			const currentUser = Meteor.user().profile().username;
 			const currentTarget = Session.get('userTarget');
 
-			if (!username || username === currentUser || username === currentTarget)
+			if (!username ||
+				username === currentUser ||
+				username === currentTarget)
 				return Session.set('userTarget', null);
 			return Session.set('userTarget', username);
 		},
