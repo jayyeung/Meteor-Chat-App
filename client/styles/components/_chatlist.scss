@@ -57,6 +57,7 @@
 .c-chatlist__message {
 	@extend .o-media;
 	padding: sp(-28) sp(-40);
+	position: relative;
 }
 
 .c-chatlist__chatbar {

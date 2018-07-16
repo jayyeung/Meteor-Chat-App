@@ -13,5 +13,9 @@
 }
 
 .c-avatar--tagged {
-	border: $baseline solid color-get(victim);
+	border: $baseline solid color-get(attacker);
+}
+
+.c-avatar--target {
+	border-color: color-get(victim);
 }

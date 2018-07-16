@@ -43,8 +43,8 @@ button {
 
 	cursor: pointer;
 	color: white;
-	background: color-get(victim);
-	border: 1px solid darken(color-get(victim), 15);
+	background: color-get(attacker);
+	border: 1px solid darken(color-get(attacker), 15);
 
 	transition: opacity 0.3s;
 	&:hover { opacity: 0.9; }
