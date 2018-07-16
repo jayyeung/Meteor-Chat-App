@@ -2,7 +2,7 @@
 	<div class='c-chatlist__info'>
 		<div class='u-inline-block u-relative u-mr-28'>
 			<Avatar tagged
-			:class='{ "user-self" : !userTarget }'
+			:class='{ "c-avatar--target" : userTarget }'
 			:src='userTarget.avatar || currentUser.avatar'/>
 
 			<transition name='reflect'>
@@ -49,8 +49,6 @@ export default {
 
 <style lang='scss' scoped>
 @import '/client/styles/settings/color';
-
-.user-self { border-color: color-get(attacker); }
 .user-avatar {
 	position: absolute;
 	right: -0.25rem;
@@ -63,7 +61,7 @@ export default {
 	border-bottom: 0.1rem solid color-get(attacker, light);
 
 	transition: all 0.3s;
-	opacity: 0.5;
+	opacity: 0.7;
 	&:hover { opacity: 1; }
 }
 </style>

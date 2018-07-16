@@ -1,5 +1,8 @@
 <template>
 	<div class='c-chatlist__message'>
+		<div v-if='background' class='bg'
+		:style='{"background": background}'></div>
+
 		<div class='o-media__fixed u-pr-28'>
 			<Avatar :src='avatar'/>
 		</div>
@@ -25,6 +28,7 @@ export default {
 	},
 	props: {
 		avatar: String,
+		background: String,
 		from: { type: String, required: true },
 		date: Date
 	},
@@ -45,6 +49,13 @@ export default {
 .text {
 	max-width: 600px;
 	word-wrap: break-word;
+}
+
+.bg {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	opacity: 0.075;
 }
 </style>
 

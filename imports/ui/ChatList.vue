@@ -9,8 +9,9 @@
 					{{ message.note }}
 				</Notification>
 
-				<Message v-else
-				:from='message.target.username' :avatar='message.target.avatar'
+				<Message v-else :background='labelMessage(message)'
+				:from='`${message.target.username}  ${(message.created_by === currentUser._id) ? "(You)" : ""}`'
+				:avatar='message.target.avatar'
 				:date='message.created_at' :key='`message-${i}`'>
 					{{ message.message }}
 				</Message>
@@ -37,6 +38,18 @@ export default {
 		Message,
 		Chatbar,
 		UserInfo,
+	},
+	methods: {
+		labelMessage: function(message) {
+			const mesCreated = message.created_by;
+			const mesUser = message.target.username;
+			const user = this.currentUser._id;
+			const target = this.userTarget.username;
+
+			if (target && mesUser === target)
+				return (mesCreated === user) ? '#0652DD' : '#E74C3C';
+			return 'none';
+		}
 	},
 	...MeteorData
 }
