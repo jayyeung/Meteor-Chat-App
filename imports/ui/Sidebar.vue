@@ -33,7 +33,7 @@
 
 			<li v-show='!filterUsers.length'
 			class='c-sidebar__list-item c-sidebar__list-item--empty'>
-				<img class='u-mb-20' src='../assets/user-anon.svg' width='160'/>
+				<img class='u-mb-20' src='/assets/user-anon.svg' width='160'/>
 				No Users Found
 			</li>
 

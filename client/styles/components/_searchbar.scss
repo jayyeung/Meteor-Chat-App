@@ -9,8 +9,7 @@
 	cursor: text;
 
 	&::before {
-		@extend .c-icon;
-		content: $c-icon-search;
+		@extend .c-icon, .c-icon-search;
 		margin-right: sp(-16);
 	}
 
