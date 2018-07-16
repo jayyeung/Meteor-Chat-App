@@ -79,13 +79,15 @@
 		},
 		computed: {
 			filterUsers: function() {
+				let users = this.users;
+				this.sortUsers(users);
+
 				const filter = (this.searchFilter).trim().toLowerCase();
-				if (filter === '') return (this.users);
-				const users = (this.users).filter((obj, i) => {
+				if (filter === '') return users;
+				users = (this.users).filter((obj, i) => {
 					const username = obj.username.toLowerCase();
 					return (username.indexOf(filter) !== -1);
 				});
-				this.sortUsers(users);
 				return users;
 			},
 
