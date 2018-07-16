@@ -63,7 +63,19 @@
 		methods: {
 			setTarget: function(username) {
 				this.$store.dispatch("setTarget", username);
-			}
+			},
+
+			sortUsers: function(users) {
+				if (users.length <= 0) return;
+				const user = this.currentUser.username;
+
+				// we want user to be on top
+				users.sort((u1, u2) => {
+					u1 = u1.username;
+					u2 = u2.username;
+					return (u1 === user) ? -1 : ((u2 === user) ? 1 : 0);
+				});
+			},
 		},
 		computed: {
 			filterUsers: function() {
@@ -73,6 +85,7 @@
 					const username = obj.username.toLowerCase();
 					return (username.indexOf(filter) !== -1);
 				});
+				this.sortUsers(users);
 				return users;
 			},
 
