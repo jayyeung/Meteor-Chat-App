@@ -1,5 +1,6 @@
 .c-chatlist {
 	@extend .o-media;
+	width: 100%;
 	flex-direction: column;
 
 	& > * { width: 100%; }
@@ -23,8 +24,8 @@
 
 .c-chatlist__notification {
 	@extend .c-label, .c-label--small;
-	text-align: center;
 	padding: sp(-20) sp(-40);
+	text-align: center;
 
 	span {
 		display: inline-block;
@@ -46,7 +47,7 @@
 		top: 50%;
 		transform: translateY(-50%);
 		background: currentColor;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	@include iota-breakpoint(sm) {
