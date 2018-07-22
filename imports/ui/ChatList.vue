@@ -2,23 +2,25 @@
 	<div class="c-chatlist">
 		<UserInfo/>
 
-		<transition-group name='slide' tag='div' class='c-chatlist__list'>
-			<template v-for='(message, i) in messages'>
-				<Notification v-if='message.type === "Notification"'
-				:key='`notify-${i}`'>
-					{{ message.note }}
-				</Notification>
+		<div class='c-chatlist__list'>
+			<transition-group name='slide'>
+				<template v-for='(message, i) in messages'>
+					<Notification v-if='message.type === "Notification"'
+					:date='message.created_at' :key='`notify-${i}`'>
+						{{ message.note }}
+					</Notification>
 
-				<Message v-else :background='labelMessage(message)'
-				:from='`${message.target.username}  ${(message.created_by === currentUser._id) ? "(You)" : ""}`'
-				:avatar='message.target.avatar'
-				:date='message.created_at' :key='`message-${i}`'>
-					{{ message.message }}
-				</Message>
-			</template>
+					<Message v-else :background='labelMessage(message)'
+					:from='`${message.target.username}  ${(message.created_by === currentUser._id) ? "(You)" : ""}`'
+					:avatar='message.target.avatar'
+					:date='message.created_at' :key='`message-${i}`'>
+						{{ message.message }}
+					</Message>
+				</template>
+			</transition-group>
 
-			<div class='u-pv-40' key='empty'></div>
-		</transition-group>
+			<div class='u-pv-40'></div>
+		</div>
 
 		<Chatbar/>
 	</div>

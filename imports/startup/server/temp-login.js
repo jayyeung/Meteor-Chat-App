@@ -18,7 +18,7 @@ Accounts.registerLoginHandler((loginRequest) => {
 	if (!user) {
 		userId = Accounts.insertUserDoc({}, query);
 		Meteor.call('messages.notify',
-		'has joined the chat.', userId);
+		'joined the chat.', userId);
 	} else { userId = user._id; }
 	return { userId };
 });
@@ -30,7 +30,7 @@ TempStatus.onUserOffline((userId) => {
 	if (!tempRemoval[userId])
 		tempRemoval[userId] = Meteor.setTimeout(() => {
 			Meteor.call('messages.notify',
-			'has left the chat.', userId);
+			'left the chat.', userId);
 
 			// remove user after timer
 			Accounts.users.remove(userId);

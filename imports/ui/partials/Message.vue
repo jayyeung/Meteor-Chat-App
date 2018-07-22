@@ -33,7 +33,7 @@ export default {
 		date: Date
 	},
 	computed: {
-		getMessageTime() {
+		getMessageTime: function() {
 			const options = {
 				hour: 'numeric',
 				minute: 'numeric',
