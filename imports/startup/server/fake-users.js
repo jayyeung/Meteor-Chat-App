@@ -9,7 +9,7 @@ const delayOut = 400000;
 // Generate fake users that will enter
 // and leave periodically
 const generateBot = () => {
-	// const logIn = Math.random() * (delayOut - delayIn) + delayIn;
+	const logIn = Math.random() * (delayOut - delayIn) + delayIn;
 	const logOut = Math.random() * (delayOut - delayIn) + delayIn;
 
 	const fakeId = Random.id();
@@ -17,7 +17,7 @@ const generateBot = () => {
 
 	Meteor.setTimeout(() => {
 		Profiles.remove(fakeId);
-		generateBot(); // Meteor.setTimeout(generateBot, logIn);
+		Meteor.setTimeout(generateBot, logIn);
 	}, logOut);
 };
 
