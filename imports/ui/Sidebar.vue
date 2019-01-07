@@ -1,44 +1,53 @@
 <template>
-	<div class='c-sidebar'>
-		<Searchbar class='u-ph-24 u-pv-20' v-model='searchFilter'/>
+	<div>
+		<div class='c-sidebar' v-show='mobileOpen'>
+			<Searchbar class='u-ph-24 u-pv-20' v-model='searchFilter'/>
 
-		<div class='c-sidebar__list-status u-ph-24'>{{ listStatus }}</div>
+			<div class='c-sidebar__list-status u-ph-24'>{{ listStatus }}</div>
 
-		<ul class='c-sidebar__list'>
-			<transition-group name='slide'>
-				<li v-for='(user, i) in filterUsers'
-					class='c-sidebar__list-item' @click='setTarget(user.username)'
-					:key='`contact-${i}`'>
+			<ul class='c-sidebar__list'>
+				<transition-group name='slide'>
+					<li v-for='(user, i) in filterUsers'
+						class='c-sidebar__list-item' @click='setTarget(user.username)'
+						:key='`contact-${i}`'>
 
-					<Avatar class='u-mr-20' :src='user.avatar'/>
-					<div>
-						<span>{{ user.username }}</span>
+						<Avatar class='u-mr-20' :src='user.avatar'/>
+						<div>
+							<span>{{ user.username }}</span>
 
-						<transition-group name='slide' tag='div' class='u-mv-8'>
-							<Label v-if='currentUser.username === user.username'
-							small class='u-color-attacker-light' style='line-height:0;'
-							key='label-1'>You</Label>
+							<transition-group name='slide' tag='div' class='u-mv-8'>
+								<Label v-if='currentUser.username === user.username'
+								small class='u-color-attacker-light' style='line-height:0;'
+								key='label-1'>You</Label>
 
-							<Label v-else-if='userTarget && userTarget.username === user.username'
-							small class='u-color-victim' style='line-height:0;'
-							key='label-2'>Target</Label>
+								<Label v-else-if='userTarget && userTarget.username === user.username'
+								small class='u-color-victim' style='line-height:0;'
+								key='label-2'>Target</Label>
 
-							<Label v-else
-							small class='disguise-label u-color-grey' style='line-height:0;'
-							key='label-3'>Disguise as target</Label>
-						</transition-group>
-					</div>
+								<Label v-else
+								small class='disguise-label u-color-grey' style='line-height:0;'
+								key='label-3'>Disguise as target</Label>
+							</transition-group>
+						</div>
+					</li>
+				</transition-group>
+
+				<li v-show='!filterUsers.length'
+				class='c-sidebar__list-item c-sidebar__list-item--empty'>
+					<img class='u-mb-20' src='/assets/user-anon.svg' width='160'/>
+					No Users Found
 				</li>
-			</transition-group>
 
-			<li v-show='!filterUsers.length'
-			class='c-sidebar__list-item c-sidebar__list-item--empty'>
-				<img class='u-mb-20' src='/assets/user-anon.svg' width='160'/>
-				No Users Found
-			</li>
+				<li class='u-pv-32'></li>
+			</ul>
+		</div>
 
-			<li class='u-pv-32'></li>
-		</ul>
+		<div class='c-sidebar__hamburger'
+			@click='mobileOpen = !mobileOpen'>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
 	</div>
 </template>
 
@@ -57,7 +66,8 @@
 		},
 		data: function() {
 			return {
-				searchFilter: ''
+				searchFilter: '',
+				mobileOpen: false
 			}
 		},
 		methods: {

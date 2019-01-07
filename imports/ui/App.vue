@@ -31,7 +31,7 @@ export default {
 }
 
 .c-sidebar { flex: 1 2; }
-.c-chatlist { flex: 1 600px; }
+.c-chatlist { flex: 1; }
 
 .credits {
 	margin: 1rem auto;
