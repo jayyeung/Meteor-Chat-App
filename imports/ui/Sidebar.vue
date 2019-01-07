@@ -43,6 +43,7 @@
 		</div>
 
 		<div class='c-sidebar__hamburger'
+			:class='{ "c-sidebar__hamburger--close" : mobileOpen }'
 			@click='mobileOpen = !mobileOpen'>
 			<span></span>
 			<span></span>
