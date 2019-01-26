@@ -2,7 +2,7 @@
 	<div class="c-chatlist">
 		<UserInfo/>
 
-		<div class='c-chatlist__list'>
+		<div class='c-chatlist__list' ref='list'>
 			<transition-group name='slide'>
 				<template v-for='(message, i) in messages'>
 					<Notification v-if='message.type === "Notification"'
@@ -19,7 +19,7 @@
 				</template>
 			</transition-group>
 
-			<div class='u-pv-40'></div>
+			<div class='u-pv-20'></div>
 		</div>
 
 		<Chatbar/>
@@ -41,6 +41,12 @@ export default {
 		Chatbar,
 		UserInfo,
 	},
+	mounted: function() {
+		this.onListScroll();
+	},
+	data: function() {
+		return { scrollBottom: true }
+	},
 	methods: {
 		labelMessage: function(message) {
 			const mesCreated = message.created_by;
@@ -51,6 +57,22 @@ export default {
 			if (target && mesUser === target)
 				return (mesCreated === user) ? '#0652DD' : '#E74C3C';
 			return 'none';
+		},
+
+		onListScroll: function() {
+			const list = this.$refs.list;
+			let bottomOfList;
+			list.onscroll = () => {
+				bottomOfList = (list.scrollTop + list.clientHeight) >= (list.scrollHeight - 10);
+				this.scrollBottom = bottomOfList;
+			};
+		}
+	},
+	watch: {
+		messages(val) {
+			const list = this.$refs.list;
+			if (this.scrollBottom)
+				list.scrollTop = list.scrollHeight;
 		}
 	},
 	...MeteorData

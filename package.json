@@ -9,15 +9,15 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
+    "iotacss": "^1.6.0",
     "meteor-node-stubs": "^0.4.1",
+    "modularscale-sass": "^3.0.5",
     "sillyname": "^0.1.0",
     "simpl-schema": "^1.5.0",
     "vue": "^2.5.16",
-    "vue-meteor-tracker": "^2.0.0-beta.3",
+    "vue-meteor-tracker": "^2.0.0-beta.5",
     "vue-supply": "^0.3.0",
-    "vuex": "^3.0.1",
-    "iotacss": "^1.6.0",
-    "modularscale-sass": "^3.0.5"
+    "vuex": "^3.0.1"
   },
   "meteor": {
     "mainModule": {
@@ -27,5 +27,7 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
+    "meteor-now": "^0.8.0",
+    "now": "^13.1.2"
   }
 }
